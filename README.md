@@ -1,8 +1,8 @@
 # jsctl
 
-A systemd commandline tool for Node.js apps - similar to systemctl
+A systemd cli for Node.js apps - similar to systemctl
 
-jsctl generates service files like the following and lets you manage your generated services from the command line.
+With jsctl you can generate and manage service files like the following:
 
 ```
 [Unit]
@@ -39,7 +39,7 @@ $ sudo jsctl generate -user $USER -env 'NODE_ENV=production NODE_PORT=3000'
 /etc/systemd/system/example-app.jsctl.service created
 $ jsctl status
 ● example-app.jsctl.service - example-app
-   Loaded: loaded (/etc/systemd/system/jsctl.jsctl.service; disabled; vendor preset: enabled)
+   Loaded: loaded (/etc/systemd/system/example-app.jsctl.service; disabled; vendor preset: enabled)
    Active: inactive (dead)
 $ sudo jsctl start
 Created symlink from /etc/systemd/system/multi-user.target.wants/example-app.jsctl.service to /etc/systemd/system/example-app.jsctl.service.
@@ -63,8 +63,8 @@ Commands:
   is-active          See if active
   is-enabled         See if enabled
   is-failed          See if failed
-  list               List service files
-  list-dependencies  Reload a service
+  list               List services
+  list-dependencies  List service dependencies
   reload             Reload a service
   reload-or-restart  Reload or restart service
   remove             Remove a service file
@@ -73,14 +73,12 @@ Commands:
   start              Start a service
   status             See the status of a service
   stop               Stop a service
-  test               Stop a service
 
 Options:
   --custom          Custom [Service] options, e.g. --custom
                     'SuccessExitStatus=1\nType=simple'             [default: ""]
   -d, --directory   Path to project folder with package.json (default:
-                    process.cwd())
-                   [default: "/home/TECHYOO/bnass/projects/acr/feedback-webapp"]
+                    process.cwd())       [default: "/current/working/directory"]
   -e, --env         Evironment                  [default: "NODE_ENV=production"]
   -n, --name        Name of a generated service
   --nodepath        Path to node binary (default: process.argv[0])
@@ -108,22 +106,22 @@ Options:
 Examples:
   GENERATE
 
-  from your projects root directory:
-  sudo jsctl generate -u $USER
+  From your projects root directory:
+  sudo jsctl generate
 
-  by telling jsctl where to find your pacakge.json:
-  sudo jsctl generate -u $USER -d /path/to/project
+  By telling jsctl where to find your pacakge.json:
+  sudo jsctl generate -d /path/to/project
 
-  or by providing name and scriptpath arguments:
-  sudo jsctl generate -u $USER -n example-app -s /path/to/script.js
+  Br by providing name and scriptpath arguments:
+  sudo jsctl generate -n example-app -s /path/to/script.js
 
-  a more customized example:
-  sudo jsctl generate -u nobody -e 'NODE_ENV=development NODE_PORT=3000'
-  --stdout 'journal+console'
+  A more customized example:
+  sudo jsctl generate -u $USER -e 'NODE_ENV=development NODE_PORT=3000'
+  --stdout journal+console
 
   GENERAL
 
-  if you want to manage a service and you are not in its projects root folder,
+  If you want to manage a service and you are not in its projects root folder,
   you have to provide the name:
 
   sudo jsctl stop -n example-app

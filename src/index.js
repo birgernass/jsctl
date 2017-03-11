@@ -121,7 +121,7 @@ const argv = require('yargs')
 
   .command({
     command: 'list',
-    desc: 'List service files',
+    desc: 'List services',
     handler: () =>
       fs.readdir('/etc/systemd/system', (err, data) => {
         if (err) return console.error(err)
@@ -136,7 +136,7 @@ const argv = require('yargs')
 
   .command({
     command: 'list-dependencies',
-    desc: 'Reload a service',
+    desc: 'List service dependencies',
     handler: (argv) =>
       exec(`systemctl list-dependencies ${service(argv)}`)
         .catch(err => console.error(err))
