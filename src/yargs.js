@@ -33,7 +33,8 @@ GENERAL
   /**
    * custom commands
    */
-  .command('add', 'Generate a service file')
+  .command('add', 'Generate a service file in /etc/systemd/system')
+  .command('gen', 'Generate a service file in current working directory')
   .command('list', 'List services')
   .command('remove', 'Remove a service file')
   /**
@@ -152,6 +153,7 @@ GENERAL
   ])
   .default('user', 'root')
   .alias('user', 'u')
+  .alias('workingdirectory', 'cwd')
   .option('workingdirectory', {
     describe: '/current/working/directory',
   })
