@@ -27,6 +27,7 @@ jsctl can use the name and main entries in your package.json and looks for your 
 By default the resulting service will automatically restart your application on failure and has NODE_ENV=production set as an environment variable. Of course these defaults can be overridden.
 
 ## Installation
+
 ```bash
 $ yarn global add jsctl
 $ # or
@@ -34,7 +35,6 @@ $ npm i -g jsctl
 ```
 
 ## Usage
-
 
 ```bash
 $ cd path/to/example-app
@@ -257,28 +257,6 @@ Examples:
 
   sudo jsctl stop example-app
   jsctl cat example-app
-```
-
-Local installation example:
-
-```bash
-$ yarn add jsctl
-$ # or
-$ npm i --save-dev jsctl
-```
-
-```js
-// package.json
-{
-  "name": "example-app",
-  "main": "path/to/script.js",
-  "scripts": {
-    "service:add": "sudo ./node_modules/.bin/jsctl add -u $USER",
-    "service:start": "sudo ./node_modules/.bin/jsctl start",
-    "service:status": "jsctl status",
-    "service:stop": "sudo ./node_modules/.bin/jsctl stop"
-  }
-}
 ```
 
 ## License
