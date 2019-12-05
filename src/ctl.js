@@ -45,6 +45,11 @@ module.exports = function ctl(yargs) {
         if (err) return console.error(err)
         return console.log(`created ${name}`)
       })
+    case 'gen':
+      return fs.writeFile(file, service.generate(argv), 'utf-8', (err) => {
+        if (err) return console.error(err)
+        return console.log(`created ${name}`)
+      })
 
     case 'list':
       return fs.readdir(paths.SERVICE_FILES, (err, data) => {
