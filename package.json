@@ -1,7 +1,7 @@
 {
   "name": "jsctl",
   "preferGlobal": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "src/index.js",
   "description": "A systemd tool - generate and manage service files for your Node.js apps",
   "bin": "src/index.js",
